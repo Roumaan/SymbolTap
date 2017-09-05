@@ -23,6 +23,8 @@ public class EndlessModeController : MonoBehaviour
     public GameObject[] buttonsSymbolImgs;
     public Sprite[] sprites;
 
+    public Sprite[] numbers;
+
     byte[] buttonsSymbolIds = new byte[20];
 
     byte trueButtonId;
@@ -69,27 +71,27 @@ public class EndlessModeController : MonoBehaviour
             if (remainingTime <= 4)
             {
                 Image img = getReadyImg.GetComponent<Image>();
-                img.color = new Color(img.color.r, img.color.g, img.color.b, remainingTime - 3f);
-                //getReadyImg.SetActive(false);
+                img.color = new Color(img.color.r, img.color.g, img.color.b, remainingTime - 3f);             
             }
 
+            Image boardImg = boardSymbolImg.GetComponent<Image>();
             if (remainingTime <= 3 && remainingTime > 2)
             {
-                Debug.Log(3);
+                getReadyImg.SetActive(false);
+                boardImg.color = new Color(boardImg.color.r, boardImg.color.g, boardImg.color.b, 1);
+                boardImg.sprite = numbers[0];
             }
             else if (remainingTime <= 2 && remainingTime > 1)
             {
-                Debug.Log(2);
+                boardImg.sprite = numbers[1];
             }
             else if (remainingTime <= 1 && remainingTime > 0)
             {
-                Debug.Log(1);
+                boardImg.sprite = numbers[2];
             }
             else if (remainingTime < 0)
             {
-                Image img = boardSymbolImg.GetComponent<Image>();
-                img.color = new Color(img.color.r, img.color.g, img.color.b, 1);
-
+                Image img;
                 for (int i = 0; i < buttonsSymbolImgs.Length; i++)
                 {
                     img = buttonsSymbolImgs[i].GetComponent<Image>();
