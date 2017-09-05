@@ -8,7 +8,7 @@ namespace WakaTime {
 			foreach (var str in importedAssets) {
 				Main.OnAssetSaved (Main.GetProjectPath () + str);
 
-//				Debug.Log ("Reimported Asset: " + str);
+//				 vDebug.Log ("Reimported Asset: " + str);
 
 			}
 			foreach (var str in deletedAssets) {
