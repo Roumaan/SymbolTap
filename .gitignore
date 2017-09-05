@@ -80,4 +80,5 @@ $RECYCLE.BIN/
 # Windows shortcuts
 *.lnk
 
-/Assets/wakatime-unity-master
+
+Assets/wakatime-unity-master/**
