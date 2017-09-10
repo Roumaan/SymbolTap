@@ -21,11 +21,11 @@ public class EndlessModeController : MonoBehaviour
 
     public GameObject boardSymbolImg;
     public GameObject[] buttonsSymbolImgs;
-    public Sprite[] sprites;
+    public char[] sprites;
 
-    public Sprite[] numbers;
+    public char[] numbers;
 
-    byte[] buttonsSymbolIds = new byte[20];
+    byte[] buttonsSymbolIds = new byte[4];
 
     byte trueButtonId;
     byte trueSymbolId;
@@ -33,12 +33,12 @@ public class EndlessModeController : MonoBehaviour
     // Use this for initialization
     void Start()
     {
-        Image img = boardSymbolImg.GetComponent<Image>();
+        Text img = boardSymbolImg.GetComponent<Text>();
         img.color = new Color(img.color.r, img.color.g, img.color.b, 0);
 
         for (int i = 0; i < buttonsSymbolImgs.Length; i++)
         {
-            img = buttonsSymbolImgs[i].GetComponent<Image>();
+            img = buttonsSymbolImgs[i].GetComponent<Text>();
             img.color = new Color(img.color.r, img.color.g, img.color.b, 0);
 
         }
@@ -74,27 +74,27 @@ public class EndlessModeController : MonoBehaviour
                 img.color = new Color(img.color.r, img.color.g, img.color.b, remainingTime - 3f);             
             }
 
-            Image boardImg = boardSymbolImg.GetComponent<Image>();
+            Text boardImg = boardSymbolImg.GetComponent<Text>();
             if (remainingTime <= 3 && remainingTime > 2)
             {
                 getReadyImg.SetActive(false);
                 boardImg.color = new Color(boardImg.color.r, boardImg.color.g, boardImg.color.b, 1);
-                boardImg.sprite = numbers[0];
+                boardImg.text = numbers[0].ToString() ;
             }
             else if (remainingTime <= 2 && remainingTime > 1)
             {
-                boardImg.sprite = numbers[1];
+                boardImg.text = numbers[1].ToString();
             }
             else if (remainingTime <= 1 && remainingTime > 0)
             {
-                boardImg.sprite = numbers[2];
+                boardImg.text = numbers[2].ToString();
             }
             else if (remainingTime < 0)
             {
-                Image img;
+                Text img;
                 for (int i = 0; i < buttonsSymbolImgs.Length; i++)
                 {
-                    img = buttonsSymbolImgs[i].GetComponent<Image>();
+                    img = buttonsSymbolImgs[i].GetComponent<Text>();
                     img.color = new Color(img.color.r, img.color.g, img.color.b, 1);
 
                 }
@@ -151,11 +151,11 @@ public class EndlessModeController : MonoBehaviour
 
     void applySymbols()
     {
-        boardSymbolImg.transform.GetComponent<Image>().sprite = sprites[trueSymbolId];
+        boardSymbolImg.transform.GetComponent<Text>().text = sprites[trueSymbolId].ToString();
 
         for (int i = 0; i < buttonsSymbolImgs.Length; i++)
         {
-            buttonsSymbolImgs[i].transform.GetComponent<Image>().sprite = sprites[buttonsSymbolIds[i]];
+            buttonsSymbolImgs[i].transform.GetComponent<Text>().text = sprites[buttonsSymbolIds[i]].ToString();          
         }
     }
 
